@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { ArrowRight } from 'lucide-react';
+import magazineImage from '../../images/photo_0013.jpg';
 
 export default function MagazineFeature() {
   return (
@@ -44,7 +45,7 @@ export default function MagazineFeature() {
           >
             <div className="relative z-10">
               <img
-                src="/images/photo_0013.jpg"
+                src={magazineImage}
                 alt="Lotty's Magazine"
                 className="w-full max-w-md mx-auto rounded-2xl shadow-2xl"
               />
