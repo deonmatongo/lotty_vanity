@@ -51,9 +51,10 @@ const mockProducts = [
 
 export const Product = {
   async list(sort = '-created_date') {
-    // Use mock data (always fresh to get latest image updates)
-    // If you want to persist user-modified products, implement a version check here
+    // Always use fresh mock data to ensure image URLs are up to date
+    // Clear any old cached products first
     productsCache = mockProducts;
+    // Update localStorage with fresh product data
     localStorage.setItem('products', JSON.stringify(mockProducts));
     
     let sorted = [...productsCache];
