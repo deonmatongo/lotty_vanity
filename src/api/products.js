@@ -31,7 +31,7 @@ const mockProducts = [
     category: 'eyes',
     price: 24.99,
     description: 'Volumizing mascara for dramatic lashes',
-    image_url: 'https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=500',
+    image_url: '/images/photo_0010.jpg',
     in_stock: true,
     featured: true,
     created_date: new Date().toISOString()
@@ -51,14 +51,10 @@ const mockProducts = [
 
 export const Product = {
   async list(sort = '-created_date') {
-    // Load from localStorage if available, otherwise use mock data
-    const stored = localStorage.getItem('products');
-    if (stored) {
-      productsCache = JSON.parse(stored);
-    } else {
-      productsCache = mockProducts;
-      localStorage.setItem('products', JSON.stringify(mockProducts));
-    }
+    // Use mock data (always fresh to get latest image updates)
+    // If you want to persist user-modified products, implement a version check here
+    productsCache = mockProducts;
+    localStorage.setItem('products', JSON.stringify(mockProducts));
     
     let sorted = [...productsCache];
     if (sort === '-created_date') {

@@ -44,7 +44,7 @@ export default function MagazineFeature() {
           >
             <div className="relative z-10">
               <img
-                src="https://images.unsplash.com/photo-1586788680434-30d324b2d46f?w=800&q=80"
+                src="/images/photo_0013.jpg"
                 alt="Lotty's Magazine"
                 className="w-full max-w-md mx-auto rounded-2xl shadow-2xl"
               />
