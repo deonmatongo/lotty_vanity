@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { ArrowRight } from 'lucide-react';
-import magazineImage from '../../images/photo_0013.jpg';
+import magazineImage from '@/images/photo_0013.jpg';
 
 export default function MagazineFeature() {
   return (
