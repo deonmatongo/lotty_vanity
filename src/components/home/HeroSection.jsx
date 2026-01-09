@@ -8,11 +8,11 @@ export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center">
       {/* Background Image */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 bg-black">
         <img
           src="/images/photo_0011.jpg"
           alt="Lotty's Vanity"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
       </div>
