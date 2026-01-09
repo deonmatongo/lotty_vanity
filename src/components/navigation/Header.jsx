@@ -115,19 +115,35 @@ export default function Header({ onCartClick, currentPageName }) {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-white pt-24 px-6 lg:hidden"
+            className="fixed inset-0 z-40 bg-white lg:hidden flex flex-col"
           >
-            <nav className="flex flex-col gap-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={createPageUrl(link.path)}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-2xl font-serif tracking-wider hover:text-rose-400 transition-colors"
-                >
-                  {link.name}
-                </Link>
-              ))}
+            {/* Sticky Header in Mobile Menu */}
+            <div className="sticky top-0 z-50 bg-white border-b border-gray-100 px-6 py-4 flex items-center justify-between">
+              <h2 className="text-xl font-serif tracking-wider">
+                <span className="font-light">LOTTY'S</span>
+                <span className="italic text-rose-400 ml-2">Vanity</span>
+              </h2>
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-2 text-gray-600 hover:text-black transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            {/* Scrollable Menu Content */}
+            <nav className="flex-1 overflow-y-auto px-6 pt-8 pb-6">
+              <div className="flex flex-col gap-8">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    to={createPageUrl(link.path)}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-2xl font-serif tracking-wider hover:text-rose-400 transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
             </nav>
           </motion.div>
         )}
