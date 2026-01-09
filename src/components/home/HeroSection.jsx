@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import heroImage from '@/images/photo_0011.jpg';
 
 export default function HeroSection() {
   return (
@@ -10,7 +11,7 @@ export default function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1920&q=80"
+          src={heroImage}
           alt="Lotty's Vanity"
           className="w-full h-full object-cover"
         />
