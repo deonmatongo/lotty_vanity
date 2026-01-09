@@ -16,14 +16,14 @@ export default function BrandStory() {
             <div className="space-y-4">
               <div className="aspect-[3/4] rounded-2xl overflow-hidden">
                 <img
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_68a2f89bf8ba911443836d76/82470867f_photo_0001.jpg"
+                  src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80"
                   alt="Lotty's Vanity"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="aspect-square rounded-2xl overflow-hidden">
                 <img
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_68a2f89bf8ba911443836d76/3d621f07d_photo_0008.jpg"
+                  src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800&q=80"
                   alt="Lotty's Vanity Products"
                   className="w-full h-full object-cover"
                 />
@@ -32,14 +32,14 @@ export default function BrandStory() {
             <div className="space-y-4 pt-8">
               <div className="aspect-square rounded-2xl overflow-hidden">
                 <img
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_68a2f89bf8ba911443836d76/94bb38a03_photo_0005.jpg"
+                  src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=800&q=80"
                   alt="Lotty's Vanity Magazine"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="aspect-[3/4] rounded-2xl overflow-hidden">
                 <img
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_68a2f89bf8ba911443836d76/a9ea688a8_photo_0007.jpg"
+                  src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=800&q=80"
                   alt="Founder"
                   className="w-full h-full object-cover"
                 />

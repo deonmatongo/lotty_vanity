@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { base44 } from '@/api/base44Client';
+import { Product } from '@/api';
 import ProductCard from '@/components/products/ProductCard';
 import { Button } from '@/components/ui/button';
 import { SlidersHorizontal, X } from 'lucide-react';
@@ -37,9 +37,9 @@ export default function Shop() {
     setLoading(true);
     let data;
     if (activeCategory === 'all') {
-      data = await base44.entities.Product.list('-created_date');
+      data = await Product.list('-created_date');
     } else {
-      data = await base44.entities.Product.filter({ category: activeCategory }, '-created_date');
+      data = await Product.filter({ category: activeCategory }, '-created_date');
     }
     setProducts(data);
     setLoading(false);

@@ -10,7 +10,7 @@ export default function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_68a2f89bf8ba911443836d76/505bd44b2_photo_0010.jpg"
+          src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1920&q=80"
           alt="Lotty's Vanity"
           className="w-full h-full object-cover"
         />

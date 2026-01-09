@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { motion } from 'framer-motion';
 import { ShoppingBag } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { CartItem } from '@/api';
 import { toast } from 'sonner';
 
 export default function ProductCard({ product, index = 0 }) {
   const addToCart = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    await base44.entities.CartItem.create({
+    await CartItem.create({
       product_id: product.id,
       product_name: product.name,
       product_image: product.image_url,
@@ -67,7 +67,7 @@ export default function ProductCard({ product, index = 0 }) {
       
       <p className="text-xs text-rose-400 tracking-widest uppercase mb-1">{product.category}</p>
       <h3 className="font-medium text-lg mb-1 group-hover:text-rose-400 transition-colors">{product.name}</h3>
-      <p className="text-gray-600">£{product.price?.toFixed(2)}</p>
+      <p className="text-gray-600">{product.price?.toFixed(2)} zł</p>
     </motion.div>
   );
 }

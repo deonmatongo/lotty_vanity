@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { motion } from 'framer-motion';
-import { base44 } from '@/api/base44Client';
+import { CartItem } from '@/api';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -21,7 +21,7 @@ export default function Checkout() {
     address: '',
     city: '',
     postalCode: '',
-    country: 'United Kingdom',
+    country: 'Poland',
     cardNumber: '',
     expiryDate: '',
     cvv: ''
@@ -33,13 +33,13 @@ export default function Checkout() {
 
   const loadCart = async () => {
     setLoading(true);
-    const items = await base44.entities.CartItem.list();
+    const items = await CartItem.list();
     setCartItems(items);
     setLoading(false);
   };
 
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
-  const shipping = subtotal > 50 ? 0 : 4.99;
+  const shipping = subtotal > 200 ? 0 : 19.99;
   const tax = subtotal * 0.1;
   const total = subtotal + shipping + tax;
 
@@ -51,9 +51,7 @@ export default function Checkout() {
     await new Promise(resolve => setTimeout(resolve, 2000));
     
     // Clear cart
-    for (const item of cartItems) {
-      await base44.entities.CartItem.delete(item.id);
-    }
+    await CartItem.clear();
     
     toast.success('Order placed successfully! 🎉');
     setProcessing(false);
@@ -251,7 +249,7 @@ export default function Checkout() {
                       Processing...
                     </div>
                   ) : (
-                    `Pay £${total.toFixed(2)}`
+                    `Pay ${total.toFixed(2)} zł`
                   )}
                 </Button>
               </form>
@@ -288,7 +286,7 @@ export default function Checkout() {
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium truncate">{item.product_name}</p>
                       <p className="text-sm text-gray-500">Qty: {item.quantity || 1}</p>
-                      <p className="text-sm text-rose-400">£{(item.price * (item.quantity || 1)).toFixed(2)}</p>
+                      <p className="text-sm text-rose-400">{(item.price * (item.quantity || 1)).toFixed(2)} zł</p>
                     </div>
                   </div>
                 ))}
@@ -298,19 +296,19 @@ export default function Checkout() {
               <div className="space-y-3 border-t border-gray-100 pt-6">
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Subtotal</span>
-                  <span className="font-medium">£{subtotal.toFixed(2)}</span>
+                  <span className="font-medium">{subtotal.toFixed(2)} zł</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Shipping</span>
-                  <span className="font-medium">{shipping === 0 ? 'FREE' : `£${shipping.toFixed(2)}`}</span>
+                  <span className="font-medium">{shipping === 0 ? 'FREE' : `${shipping.toFixed(2)} zł`}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Tax</span>
-                  <span className="font-medium">£{tax.toFixed(2)}</span>
+                  <span className="font-medium">{tax.toFixed(2)} zł</span>
                 </div>
                 <div className="flex justify-between text-lg font-serif pt-3 border-t border-gray-100">
                   <span>Total</span>
-                  <span className="text-rose-400">£{total.toFixed(2)}</span>
+                  <span className="text-rose-400">{total.toFixed(2)} zł</span>
                 </div>
               </div>
 
@@ -318,7 +316,7 @@ export default function Checkout() {
               {shipping > 0 && (
                 <div className="mt-6 p-4 bg-rose-50 rounded-xl">
                   <p className="text-xs text-rose-600">
-                    Add £{(50 - subtotal).toFixed(2)} more for FREE shipping
+                    Add {(50 - subtotal).toFixed(2)} zł more for FREE shipping
                   </p>
                 </div>
               )}

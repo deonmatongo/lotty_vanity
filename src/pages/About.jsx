@@ -11,7 +11,7 @@ export default function About() {
       <section className="relative min-h-[70vh] flex items-center">
         <div className="absolute inset-0">
           <img
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_68a2f89bf8ba911443836d76/a9ea688a8_photo_0007.jpg"
+            src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=1920&q=80"
             alt="Lotty's Vanity Founder"
             className="w-full h-full object-cover"
           />
@@ -90,7 +90,7 @@ export default function About() {
               className="relative"
             >
               <img
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_68a2f89bf8ba911443836d76/2375cdb2f_photo_0011.jpg"
+                src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800&q=80"
                 alt="Lotty's Vanity Products"
                 className="rounded-3xl shadow-2xl"
               />
@@ -171,7 +171,7 @@ export default function About() {
               className="order-2 lg:order-1"
             >
               <img
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_68a2f89bf8ba911443836d76/505b1e8c6_photo_0012.jpg"
+                src="https://images.unsplash.com/photo-1586788680434-30d324b2d46f?w=800&q=80"
                 alt="Lotty's Magazine"
                 className="rounded-3xl shadow-2xl"
               />

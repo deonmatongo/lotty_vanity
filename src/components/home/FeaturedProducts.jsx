@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { motion } from 'framer-motion';
 import { ArrowRight, ShoppingBag } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { Product, CartItem } from '@/api';
 import { toast } from 'sonner';
 
 export default function FeaturedProducts() {
@@ -12,15 +12,15 @@ export default function FeaturedProducts() {
 
   useEffect(() => {
     const loadProducts = async () => {
-      const data = await base44.entities.Product.filter({ featured: true }, '-created_date', 4);
-      setProducts(data);
+      const data = await Product.filter({ featured: true }, '-created_date');
+      setProducts(data.slice(0, 4));
       setLoading(false);
     };
     loadProducts();
   }, []);
 
   const addToCart = async (product) => {
-    await base44.entities.CartItem.create({
+    await CartItem.create({
       product_id: product.id,
       product_name: product.name,
       product_image: product.image_url,
@@ -102,7 +102,7 @@ export default function FeaturedProducts() {
                 </Link>
                 <p className="text-xs text-rose-400 tracking-widest uppercase mb-1">{product.category}</p>
                 <h3 className="font-medium text-lg mb-1">{product.name}</h3>
-                <p className="text-gray-600">£{product.price?.toFixed(2)}</p>
+                <p className="text-gray-600">{product.price?.toFixed(2)} zł</p>
               </motion.div>
             ))}
           </div>

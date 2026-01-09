@@ -89,7 +89,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="border-t border-white/10 mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white/40 text-sm">
-            © 2024 Lotty's Vanity. All rights reserved.
+            © 2025 Lotty's Vanity. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-white/40">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>

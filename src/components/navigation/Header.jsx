@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { ShoppingBag, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { base44 } from '@/api/base44Client';
+import { CartItem } from '@/api';
 
 export default function Header({ onCartClick, currentPageName }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,7 +24,7 @@ export default function Header({ onCartClick, currentPageName }) {
 
   useEffect(() => {
     const loadCartCount = async () => {
-      const items = await base44.entities.CartItem.list();
+      const items = await CartItem.list();
       const total = items.reduce((sum, item) => sum + (item.quantity || 1), 0);
       setCartCount(total);
     };

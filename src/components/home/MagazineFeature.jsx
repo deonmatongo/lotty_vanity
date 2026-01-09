@@ -44,7 +44,7 @@ export default function MagazineFeature() {
           >
             <div className="relative z-10">
               <img
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_68a2f89bf8ba911443836d76/c991fadbb_photo_0013.jpg"
+                src="https://images.unsplash.com/photo-1586788680434-30d324b2d46f?w=800&q=80"
                 alt="Lotty's Magazine"
                 className="w-full max-w-md mx-auto rounded-2xl shadow-2xl"
               />

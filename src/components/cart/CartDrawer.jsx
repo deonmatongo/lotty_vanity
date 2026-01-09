@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Plus, Minus, ShoppingBag, Trash2, ArrowRight, Gift } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
+import { CartItem } from '@/api';
 import { Button } from '@/components/ui/button';
 
 export default function CartDrawer({ isOpen, onClose }) {
@@ -18,7 +18,7 @@ export default function CartDrawer({ isOpen, onClose }) {
 
   const loadCart = async () => {
     setLoading(true);
-    const items = await base44.entities.CartItem.list();
+    const items = await CartItem.list();
     setCartItems(items);
     setLoading(false);
   };
@@ -26,20 +26,20 @@ export default function CartDrawer({ isOpen, onClose }) {
   const updateQuantity = async (item, change) => {
     const newQuantity = (item.quantity || 1) + change;
     if (newQuantity <= 0) {
-      await base44.entities.CartItem.delete(item.id);
+      await CartItem.delete(item.id);
     } else {
-      await base44.entities.CartItem.update(item.id, { quantity: newQuantity });
+      await CartItem.update(item.id, { quantity: newQuantity });
     }
     loadCart();
   };
 
   const removeItem = async (id) => {
-    await base44.entities.CartItem.delete(id);
+    await CartItem.delete(id);
     loadCart();
   };
 
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
-  const shipping = subtotal > 50 ? 0 : 4.99;
+  const shipping = subtotal > 200 ? 0 : 19.99;
   const total = subtotal + shipping;
 
   return (
@@ -115,7 +115,7 @@ export default function CartDrawer({ isOpen, onClose }) {
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="font-medium text-sm truncate">{item.product_name}</h3>
-                        <p className="text-rose-400 text-sm mt-1">£{item.price?.toFixed(2)}</p>
+                        <p className="text-rose-400 text-sm mt-1">{item.price?.toFixed(2)} zł</p>
                         <div className="flex items-center gap-3 mt-2">
                           <button
                             onClick={() => updateQuantity(item, -1)}
@@ -148,19 +148,19 @@ export default function CartDrawer({ isOpen, onClose }) {
             {cartItems.length > 0 && (
               <div className="p-6 border-t border-gray-100 space-y-4">
                 {/* Free Shipping Progress */}
-                {subtotal < 50 && (
+                {subtotal < 200 && (
                   <div className="mb-4">
                     <div className="flex items-center justify-between text-xs text-gray-600 mb-2">
                       <span className="flex items-center gap-1">
                         <Gift className="w-3 h-3" />
-                        Free shipping at £50
+                        Free shipping at 200 zł
                       </span>
-                      <span className="font-medium">£{(50 - subtotal).toFixed(2)} to go</span>
+                      <span className="font-medium">{(200 - subtotal).toFixed(2)} zł to go</span>
                     </div>
                     <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
-                        animate={{ width: `${Math.min((subtotal / 50) * 100, 100)}%` }}
+                        animate={{ width: `${Math.min((subtotal / 200) * 100, 100)}%` }}
                         className="h-full bg-gradient-to-r from-rose-400 to-rose-500 rounded-full"
                       />
                     </div>
@@ -171,15 +171,15 @@ export default function CartDrawer({ isOpen, onClose }) {
                 <div className="space-y-2 py-4">
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">Subtotal</span>
-                    <span className="font-medium">£{subtotal.toFixed(2)}</span>
+                    <span className="font-medium">{subtotal.toFixed(2)} zł</span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">Shipping</span>
-                    <span className="font-medium">{shipping === 0 ? 'FREE' : `£${shipping.toFixed(2)}`}</span>
+                    <span className="font-medium">{shipping === 0 ? 'FREE' : `${shipping.toFixed(2)} zł`}</span>
                   </div>
                   <div className="flex items-center justify-between text-lg font-serif pt-2 border-t border-gray-100">
                     <span>Total</span>
-                    <span className="text-rose-400">£{total.toFixed(2)}</span>
+                    <span className="text-rose-400">{total.toFixed(2)} zł</span>
                   </div>
                 </div>
 

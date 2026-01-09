@@ -1,8 +1,6 @@
-# Base44 App
+# Lottys Vanity
 
-
-This app was created automatically by Base44.
-It's a Vite+React app that communicates with the Base44 API.
+A modern e-commerce application for beauty products built with React and Vite.
 
 ## Running the app
 
@@ -17,4 +15,10 @@ npm run dev
 npm run build
 ```
 
-For more information and support, please contact Base44 support at app@base44.com.
+## Features
+
+- Product catalog with categories
+- Shopping cart with localStorage persistence
+- Secure checkout flow
+- Responsive design
+- Modern UI with animations

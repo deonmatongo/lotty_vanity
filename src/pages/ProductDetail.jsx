@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { motion } from 'framer-motion';
-import { base44 } from '@/api/base44Client';
+import { Product, CartItem } from '@/api';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, Minus, Plus, ShoppingBag, Heart, Check } from 'lucide-react';
 import { toast } from 'sonner';
@@ -23,9 +23,9 @@ export default function ProductDetail() {
         setLoading(false);
         return;
       }
-      const products = await base44.entities.Product.filter({ id: productId });
-      if (products.length > 0) {
-        setProduct(products[0]);
+      const productData = await Product.getById(productId);
+      if (productData) {
+        setProduct(productData);
       }
       setLoading(false);
     };
@@ -34,7 +34,7 @@ export default function ProductDetail() {
 
   const addToCart = async () => {
     setAddingToCart(true);
-    await base44.entities.CartItem.create({
+    await CartItem.create({
       product_id: product.id,
       product_name: product.name,
       product_image: product.image_url,
@@ -138,7 +138,7 @@ export default function ProductDetail() {
                 {product.category}
               </p>
               <h1 className="text-4xl md:text-5xl font-serif mb-4">{product.name}</h1>
-              <p className="text-3xl font-light mb-8">£{product.price?.toFixed(2)}</p>
+              <p className="text-3xl font-light mb-8">{product.price?.toFixed(2)} zł</p>
 
               {product.description && (
                 <p className="text-gray-600 font-light leading-relaxed mb-8">
@@ -207,7 +207,7 @@ export default function ProductDetail() {
                   <div className="w-5 h-5 rounded-full bg-rose-100 flex items-center justify-center">
                     <Check className="w-3 h-3 text-rose-400" />
                   </div>
-                  Free shipping on orders over £50
+                  Free shipping on orders over 200 zł
                 </div>
                 <div className="flex items-center gap-3 text-sm text-gray-600">
                   <div className="w-5 h-5 rounded-full bg-rose-100 flex items-center justify-center">
